@@ -6,6 +6,18 @@
   .navbar__logo {
     width: 150px;
   }
+  .app__container {
+    display: grid;
+    grid-template-rows: 80px;
+  }
+  .pokemon__container {
+    /*  width: auto;
+    height: 350px; */
+  }
+  .pokemon__img {
+    height: 300px;
+    margin: 0 auto;
+  }
 }
 
 @layer utilities {

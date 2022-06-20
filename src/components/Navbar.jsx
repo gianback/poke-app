@@ -6,7 +6,7 @@ const Navbar = () => {
   const [hamburguer, sethamburguer] = useState(false);
 
   return (
-    <nav className="bg-red-500 py-2 px-4 text-white z-10">
+    <nav className="bg-red-500 py-2 px-4 text-white z-10 flex items-center">
       <div className="container mx-auto flex justify-between">
         <figure className="navbar__logo">
           <img src={logo} alt="pokemon-logo" className="max-w-full" />
