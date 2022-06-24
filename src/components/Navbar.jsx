@@ -8,9 +8,11 @@ const Navbar = () => {
   return (
     <nav className="bg-red-500 py-2 px-4 text-white z-10 flex items-center">
       <div className="container mx-auto flex justify-between">
-        <figure className="navbar__logo">
-          <img src={logo} alt="pokemon-logo" className="max-w-full" />
-        </figure>
+        <NavLink to="/all">
+          <figure className="navbar__logo">
+            <img src={logo} alt="pokemon-logo" className="max-w-full" />
+          </figure>
+        </NavLink>
 
         <i
           className="large material-icons cursor-pointer text-5xl flex md:hidden"
@@ -28,6 +30,13 @@ const Navbar = () => {
         >
           <ul className="flex flex-col justify-evenly items-stretch h-full text-center">
             <NavLink
+              to="/all"
+              className="h-full flex items-center justify-center text-3xl hover:text-yellow-300 transition ease-in delay-50"
+              onClick={() => sethamburguer(!hamburguer)}
+            >
+              Inicio
+            </NavLink>
+            <NavLink
               to="/types"
               className="h-full flex items-center justify-center text-3xl hover:text-yellow-300 transition ease-in delay-50"
               onClick={() => sethamburguer(!hamburguer)}
@@ -42,13 +51,6 @@ const Navbar = () => {
               Regiónes
             </NavLink>
             <NavLink
-              to="/colors"
-              className="h-full flex items-center justify-center text-3xl hover:text-yellow-300 transition ease-in delay-50"
-              onClick={() => sethamburguer(!hamburguer)}
-            >
-              Colores
-            </NavLink>
-            <NavLink
               to="/habitat"
               className="h-full flex items-center justify-center text-3xl hover:text-yellow-300 transition ease-in delay-50"
               onClick={() => sethamburguer(!hamburguer)}
@@ -61,6 +63,12 @@ const Navbar = () => {
         <ul className="justify-end items-center gap-10 hidden md:flex">
           <NavLink
             className="text-3xl hover:text-yellow-300 transition ease-in delay-50"
+            to="/all"
+          >
+            Inicio
+          </NavLink>
+          <NavLink
+            className="text-3xl hover:text-yellow-300 transition ease-in delay-50"
             to="/types"
           >
             Tipos
@@ -70,12 +78,6 @@ const Navbar = () => {
             to="/regions"
           >
             Regiónes
-          </NavLink>
-          <NavLink
-            className="text-3xl hover:text-yellow-300 transition ease-in delay-50"
-            to="/colors"
-          >
-            Colores
           </NavLink>
           <NavLink
             className="text-3xl hover:text-yellow-300 transition ease-in delay-50"

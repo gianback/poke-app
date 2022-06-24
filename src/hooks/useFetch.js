@@ -7,6 +7,7 @@ export const useFetch = (url) => {
     loading: true,
     error: null,
   });
+  const [allData, setAllData] = useState([]);
 
   useEffect(() => {
     return () => {
@@ -26,6 +27,7 @@ export const useFetch = (url) => {
             error: null,
             data,
           });
+          setAllData([...allData, data.results]);
         }
       })
       .catch(() => {
@@ -37,5 +39,5 @@ export const useFetch = (url) => {
       });
   }, [url]);
 
-  return state;
+  return { state, allData };
 };
