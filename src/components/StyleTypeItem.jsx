@@ -1,6 +1,5 @@
 import React from "react";
 import { setStyleType } from "../helpers/TypeItem/setStyleType";
-import { types } from "../types/types";
 
 const TypeItem = ({ type }) => {
   const typeStyleDefault = {

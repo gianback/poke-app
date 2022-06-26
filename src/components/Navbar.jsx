@@ -44,18 +44,11 @@ const Navbar = () => {
               Tipos
             </NavLink>
             <NavLink
-              to="/regions"
+              to="/favorites"
               className="h-full flex items-center justify-center text-3xl hover:text-yellow-300 transition ease-in delay-50"
               onClick={() => sethamburguer(!hamburguer)}
             >
-              Regiónes
-            </NavLink>
-            <NavLink
-              to="/habitat"
-              className="h-full flex items-center justify-center text-3xl hover:text-yellow-300 transition ease-in delay-50"
-              onClick={() => sethamburguer(!hamburguer)}
-            >
-              Hábitat
+              Favoritos
             </NavLink>
           </ul>
         </div>
@@ -75,15 +68,9 @@ const Navbar = () => {
           </NavLink>
           <NavLink
             className="text-3xl hover:text-yellow-300 transition ease-in delay-50"
-            to="/regions"
+            to="/favorites"
           >
-            Regiónes
-          </NavLink>
-          <NavLink
-            className="text-3xl hover:text-yellow-300 transition ease-in delay-50"
-            to="/habitat"
-          >
-            Hábitat
+            Favoritos
           </NavLink>
         </ul>
       </div>

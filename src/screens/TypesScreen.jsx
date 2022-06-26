@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { SpinnerCircular } from "spinners-react";
 import { getTypes } from "../api/callApi";
+import Navbar from "../components/Navbar";
 import TypeListContainer from "../components/TypeListContainer";
 
 const TypesScreen = () => {
@@ -24,15 +26,20 @@ const TypesScreen = () => {
   }, []);
 
   return (
-    <div className="container m-auto">
-      {loading === false && (
-        <div className="grid grid-cols-4 gap-5">
-          {listTypes.map((type) => (
-            <TypeListContainer key={type} title={type} />
-          ))}
-        </div>
-      )}
-    </div>
+    <>
+      <Navbar />
+      <div className="container m-auto">
+        {loading === false ? (
+          <div className="grid grid-cols-4 gap-5">
+            {listTypes.map((type) => (
+              <TypeListContainer key={type} title={type} />
+            ))}
+          </div>
+        ) : (
+          <SpinnerCircular className="text-center mx-auto mt-5" />
+        )}
+      </div>
+    </>
   );
 };
 

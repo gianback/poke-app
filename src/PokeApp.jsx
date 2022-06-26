@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import AppRoute from "./routes/AppRoute";
-import Navbar from "./components/Navbar";
+
 import { BrowserRouter } from "react-router-dom";
+import { FavoritesContext } from "./context/FavoritesContext";
 
 const PokeApp = () => {
+  let [favorites, setFavorites] = useState([]);
+
+  const setAndDeleteFavorites = (pokemon) => {
+    //quitar y desactivar el true o false de si es favorito o no
+    if (favorites.includes(pokemon)) {
+      setFavorites(favorites.filter((fav) => fav.id !== pokemon.id));
+    } else {
+      setFavorites(favorites.concat(pokemon));
+    }
+  };
+
   return (
-    <div className="min-h-screen app__container">
+    <FavoritesContext.Provider
+      value={{ favorites, setFavorites, setAndDeleteFavorites }}
+    >
       <BrowserRouter>
-        <Navbar />
-        <AppRoute />
+        <div className="min-h-screen app__container">
+          <AppRoute />
+        </div>
       </BrowserRouter>
-    </div>
+    </FavoritesContext.Provider>
   );
 };
 
