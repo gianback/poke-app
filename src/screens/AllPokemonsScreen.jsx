@@ -5,7 +5,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { getPokemonData, getPokemons, searchPokemon } from "../api/callApi";
 import { SpinnerCircular } from "spinners-react";
 import Navbar from "../components/Navbar";
-import { NavLink } from "react-router-dom";
 const AllPokemonsScreen = () => {
   //pokemons
   const [pokemons, setPokemons] = useState([]);
