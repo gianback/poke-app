@@ -9,7 +9,7 @@ const Navbar = () => {
     <nav>
       <div className="h-24 flex justify-between items-center bg-red-500 z-10 fixed right-0 left-0 top-0 ">
         <div className="container mx-auto flex justify-between items-center">
-          <NavLink to="/all">
+          <NavLink to="/home">
             <figure className="navbar__logo">
               <img src={logo} alt="pokemon-logo" className="max-w-full" />
             </figure>
