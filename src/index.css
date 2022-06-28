@@ -8,12 +8,9 @@
   }
   .app__container {
     display: grid;
-    grid-template-rows: 87.25px;
+    grid-template-rows: 96px;
   }
-  .pokemon__container {
-    /*  width: auto;
-    height: 350px; */
-  }
+
   .pokemon__img {
     height: 300px;
     margin: 0 auto;

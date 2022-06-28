@@ -19,10 +19,10 @@ const HomeScreen = () => {
             </div>
             <div className="flex justify-center items-start md:items-center">
               <Link to="/all">
-                <button className="uppercase flex gap-5 rounded-lg py-3 px-4 bg-yellow-300 text-red-500 font-bold  text-2xl lg:text-3xl">
+                <button className="uppercase flex items-center gap-5 rounded-lg p-8 bg-yellow-300 text-red-500 font-bold  text-2xl lg:text-4xl">
                   Start
                   <img
-                    className="w-14 mx-auto mt-2"
+                    className="w-20 mx-auto mt-2"
                     src={pokeball}
                     alt="pokeball"
                   />

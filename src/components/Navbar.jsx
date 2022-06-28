@@ -7,7 +7,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="flex justify-between items-center bg-red-500 z-10 fixed right-0 left-0 top-0 p-4">
+      <div className="h-24 flex justify-between items-center bg-red-500 z-10 fixed right-0 left-0 top-0 ">
         <div className="container mx-auto flex justify-between items-center">
           <NavLink to="/all">
             <figure className="navbar__logo">
@@ -17,7 +17,7 @@ const Navbar = () => {
 
           {hamburguer ? (
             <button
-              className="flex md:hidden hamburger hamburger--vortex"
+              className="flex md:hidden hamburger hamburger--vortex is-active"
               type="button"
               onClick={() => sethamburguer(!hamburguer)}
             >
@@ -27,7 +27,7 @@ const Navbar = () => {
             </button>
           ) : (
             <button
-              className="flex md:hidden hamburger hamburger--vortex is-active "
+              className="flex md:hidden hamburger hamburger--vortex  "
               type="button"
               onClick={() => sethamburguer(!hamburguer)}
             >
@@ -39,7 +39,7 @@ const Navbar = () => {
 
           {/* navbar MOBILES */}
           <div
-            className={`fixed top-10 left-0 right-0 mt-7 bg-red-500 h-80 block md:hidden  ${
+            className={`fixed top-10 left-0 right-0 mt-12 bg-red-500 h-80 block md:hidden  ${
               hamburguer
                 ? "animate__animated animate__fadeInLeft"
                 : "animate__animated animate__fadeOutLeft"

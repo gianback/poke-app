@@ -25,13 +25,13 @@ const FavoritesScreen = () => {
     <>
       <Navbar />
       {favorites.length === 0 ? (
-        <div className="flex items-center justify-center bg-red-400">
-          <h1 className="text-4xl text-center text-white uppercase font-bold">
-            No hay pokemones marcados como favoritos! 😐
+        <div className="flex items-center justify-center app-bg">
+          <h1 className="text-4xl text-center text-red-500 uppercase font-bold">
+            There are no pokemon marked as favorites! 😐
           </h1>
         </div>
       ) : (
-        <div className="pt-10 app-bg">
+        <div className="pt-10 app-bg px-3 xl:px-0">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 overflow-hidden">
             {favoritesRenderList.map(
               (pokemon) =>
