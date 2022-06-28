@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import AllPokemonsScreen from "../screens/AllPokemonsScreen";
+import WelcomeScreen from "../screens/WelcomeScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import HomeScreen from "../screens/HomeScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
@@ -12,8 +12,8 @@ const AppRoute = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomeScreen />} />
-        <Route path="/all" element={<AllPokemonsScreen />} />
+        <Route path="/" element={<WelcomeScreen />} />
+        <Route path="/home" element={<HomeScreen />} />
         <Route path="/types" element={<TypesScreen />} />
         <Route path="/types/:type" element={<TypeSelectedScreen />} />
         <Route path="/favorites" element={<FavoritesScreen />} />

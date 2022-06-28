@@ -1,39 +1,155 @@
-import React from "react";
-import mainLogo from "../assets/poke-main.jpg";
-import pokeball from "../assets/pokeball.png";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import PokemonItem from "../components/PokemonItem";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { getPokemonData, getPokemons, searchPokemon } from "../api/callApi";
+import { SpinnerCircular } from "spinners-react";
+import Navbar from "../components/Navbar";
+const AllPokemonsScreen = () => {
+  //pokemons
+  const [pokemons, setPokemons] = useState([]);
+  const [nextData, setNextData] = useState(0);
+  const [findPok, setFindPok] = useState("");
+  //booleans
+  const [hasMore, setHasMore] = useState(true);
+  const [found, setfound] = useState(true);
+  //mostrar btn subir
+  const [btnScroll, setBtnScroll] = useState(false);
+  const fetchPokemons = async () => {
+    try {
+      const data = await getPokemons(nextData);
+      const promises = data.results.map(
+        async (pokemon) => await getPokemonData(pokemon.url)
+      );
+      const results = await Promise.all(promises);
 
-const HomeScreen = () => {
+      setPokemons(pokemons.concat(results));
+      setHasMore(true);
+      setfound(true);
+    } catch (error) {
+      setHasMore(false);
+    }
+  };
+
+  document.addEventListener("scroll", (e) => {
+    const scroll = document.documentElement.scrollTop;
+    if (scroll > 250) {
+      setBtnScroll(true);
+    } else {
+      setBtnScroll(false);
+    }
+  });
+
+  useEffect(() => {
+    fetchPokemons();
+  }, [nextData]);
+
+  const handleInputChange = (e) => {
+    setFindPok(e.target.value);
+  };
+
+  const findPokemon = async (e) => {
+    e.preventDefault();
+    if (findPok.trim().length > 0) {
+      const datos = await searchPokemon(findPok);
+      if (datos) {
+        setPokemons([datos]);
+        setHasMore(false);
+        setfound(true);
+        setFindPok("");
+      } else {
+        setFindPok("");
+        setfound(false);
+        setHasMore(false);
+        setPokemons([]);
+      }
+    }
+  };
+
+  const handleReset = () => {
+    pokemons.pop();
+    setNextData(0);
+    fetchPokemons();
+    setHasMore(true);
+    setFindPok("");
+  };
+
+  const prueba2 = () => {
+    document.documentElement.scrollTop = 0;
+  };
   return (
     <>
-      <div className="h-screen overflow-hidden">
-        <div
-          style={{ backgroundImage: `url(${mainLogo})` }}
-          className="h-full w-full bg-center bg-cover bg-no-repeat flex justify-center items-center "
-        >
-          <div className="h-2/4 w-4/5 md:w-3/5 rounded-lg backdrop-blur-md bg-black/50 text-yellow-300 p-2 md:p-8 grid grid-rows-2 lg:grid-rows-1 grid-cols-1 lg:grid-cols-2 text-center lg:text-start animate__animated animate__fadeInRight">
-            <div className="flex justify-center items-center">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-10 xl:line-height-60 ">
-                All your pokemons, in one place.
-              </h1>
+      <Navbar />
+      <div className="app-bg h-full ">
+        <div className="container mx-auto h-full  p-2 lg:p-9 relative">
+          <form
+            onSubmit={findPokemon}
+            className="flex flex-col lg:flex-row justify-center items-center gap-10 my-3 mx-0 sm:mx-4"
+          >
+            <label className="font-bold text-lg">Find your pokemon</label>
+            <input
+              type="text"
+              name="name"
+              className="outline-none w-full  lg:w-96 rounded-md py-1 px-2"
+              autoComplete="off"
+              onChange={handleInputChange}
+              value={findPok}
+              placeholder="name"
+            />
+            <div className="flex justify-between items-center gap-5">
+              <button
+                className="p-2 bg-yellow-400 rounded-md font-bold inline-block hover:bg-red-500 hover:text-yellow-300 transition-all ease-in duration-200"
+                type="submit"
+              >
+                Search
+              </button>
+              <button
+                disabled={
+                  pokemons.length === 0 || pokemons.length === 1 ? false : true
+                }
+                className={
+                  pokemons.length === 0 || pokemons.length === 1
+                    ? "p-2 bg-yellow-400 rounded-md font-bold inline-block hover:bg-red-500 hover:text-yellow-300 transition-all ease-in duration-200"
+                    : "p-2 bg-yellow-400 rounded-md font-bold inline-block"
+                }
+                onClick={handleReset}
+              >
+                Reset
+              </button>
             </div>
-            <div className="flex justify-center items-start md:items-center">
-              <Link to="/all">
-                <button className="uppercase flex items-center gap-5 rounded-lg p-8 bg-yellow-300 text-red-500 font-bold  text-2xl lg:text-4xl">
-                  Start
-                  <img
-                    className="w-20 mx-auto mt-2"
-                    src={pokeball}
-                    alt="pokeball"
-                  />
-                </button>
-              </Link>
-            </div>
-          </div>
+          </form>
+
+          <InfiniteScroll
+            dataLength={pokemons.length} //This is important field to render the next data
+            next={() => setNextData((prevData) => prevData + 20)}
+            hasMore={hasMore}
+            loader={<SpinnerCircular className="text-center mx-auto mt-5" />}
+            style={{ overflow: "hidden" }}
+          >
+            {found ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 overflow-hidden">
+                {pokemons.map((pok) => (
+                  <PokemonItem key={pok.id} pokemon={pok} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center w-full uppercase bg-yellow-400 font-bold p-4 animate__animated animate__fadeInUp rounded-md overflow-hidden">
+                pokemon not found, try again!
+              </div>
+            )}
+          </InfiniteScroll>
+          {btnScroll && (
+            <button
+              onClick={prueba2}
+              className="fixed bottom-10 right-10 text-7xl"
+            >
+              👆
+            </button>
+          )}
         </div>
       </div>
     </>
   );
 };
 
-export default HomeScreen;
+export default AllPokemonsScreen;
