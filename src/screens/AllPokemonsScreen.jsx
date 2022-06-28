@@ -134,7 +134,7 @@ const AllPokemonsScreen = () => {
               </div>
             ) : (
               <div className="text-center w-full uppercase bg-yellow-400 font-bold p-4 animate__animated animate__fadeInUp rounded-md overflow-hidden">
-                pokemon no encontrado, intenta de nuevo!
+                pokemon not found, try again!
               </div>
             )}
           </InfiniteScroll>
