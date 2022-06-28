@@ -43,7 +43,6 @@ const AllPokemonsScreen = () => {
 
   useEffect(() => {
     fetchPokemons();
-    /* console.log(window.pageYOffset); */
   }, [nextData]);
 
   const handleInputChange = (e) => {
