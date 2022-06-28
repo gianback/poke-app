@@ -45,29 +45,31 @@ const TypeSelectedScreen = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto  ">
-        <div className="flex justify-end">
-          <button
-            className="m-4 py-2 px-4 bg-yellow-400 font-bold uppercase rounded-md"
-            onClick={() => navigate("/types")}
-          >
-            retroceder
-          </button>
-        </div>
-
-        <InfiniteScroll
-          dataLength={listPokemons.length} //This is important field to render the next data
-          next={setData}
-          hasMore={loading}
-          /*  hasMore={fin >= completed.length ? false : true} */
-          loader={<SpinnerCircular className="text-center mx-auto mt-5" />}
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 overflow-hidden">
-            {listPokemons.map((pok) => (
-              <PokemonItem key={pok.name} pokemon={pok} />
-            ))}
+      <div className="app-bg">
+        <div className="container mx-auto">
+          <div className="flex justify-end">
+            <button
+              className="m-4 py-2 px-4 bg-yellow-400 font-bold uppercase rounded-md"
+              onClick={() => navigate("/types")}
+            >
+              back
+            </button>
           </div>
-        </InfiniteScroll>
+
+          <InfiniteScroll
+            dataLength={listPokemons.length} //This is important field to render the next data
+            next={setData}
+            hasMore={loading}
+            /*  hasMore={fin >= completed.length ? false : true} */
+            loader={<SpinnerCircular className="text-center mx-auto mt-5" />}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 overflow-hidden px-3 xl:px-0">
+              {listPokemons.map((pok) => (
+                <PokemonItem key={pok.name} pokemon={pok} />
+              ))}
+            </div>
+          </InfiniteScroll>
+        </div>
       </div>
     </>
   );

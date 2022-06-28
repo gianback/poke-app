@@ -3,23 +3,33 @@ import AppRoute from "./routes/AppRoute";
 
 import { BrowserRouter } from "react-router-dom";
 import { FavoritesContext } from "./context/FavoritesContext";
+import { useEffect } from "react";
 
 const PokeApp = () => {
-  let [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
-  const setAndDeleteFavorites = (pokemon) => {
-    //quitar y desactivar el true o false de si es favorito o no
-    if (favorites.includes(pokemon)) {
-      setFavorites(favorites.filter((fav) => fav.id !== pokemon.id));
+  useEffect(() => {
+    if (localStorage.getItem("favorites")) {
+      setFavorites(JSON.parse(localStorage.getItem("favorites")));
     } else {
-      setFavorites(favorites.concat(pokemon));
+      localStorage.setItem("favorites", []);
     }
+  }, []);
+
+  const updateFavoriesPokemons = (name) => {
+    let updated = [...favorites];
+    const isFavorite = updated.indexOf(name);
+    if (isFavorite >= 0) {
+      updated.splice(isFavorite, 1);
+    } else {
+      updated.push(name);
+    }
+    setFavorites(updated);
+    localStorage.setItem("favorites", JSON.stringify(updated));
   };
 
   return (
-    <FavoritesContext.Provider
-      value={{ favorites, setFavorites, setAndDeleteFavorites }}
-    >
+    <FavoritesContext.Provider value={{ favorites, updateFavoriesPokemons }}>
       <BrowserRouter>
         <div className="min-h-screen app__container">
           <AppRoute />

@@ -2,14 +2,11 @@ import React from "react";
 import mainLogo from "../assets/poke-main.jpg";
 import pokeball from "../assets/pokeball.png";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 const HomeScreen = () => {
   return (
     <>
-      <Navbar />
-
-      <div className="h-full overflow-hidden">
+      <div className="h-screen overflow-hidden">
         <div
           style={{ backgroundImage: `url(${mainLogo})` }}
           className="h-full w-full bg-center bg-cover bg-no-repeat flex justify-center items-center "

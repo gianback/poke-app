@@ -28,16 +28,18 @@ const TypesScreen = () => {
   return (
     <>
       <Navbar />
-      <div className="container m-auto">
-        {loading === false ? (
-          <div className="grid grid-cols-4 gap-5">
-            {listTypes.map((type) => (
-              <TypeListContainer key={type} title={type} />
-            ))}
-          </div>
-        ) : (
-          <SpinnerCircular className="text-center mx-auto mt-5" />
-        )}
+      <div className="app-bg flex">
+        <div className=" container m-auto">
+          {loading === false ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 overflow-hidden gap-5 p-3 xl:p-0">
+              {listTypes.map((type) => (
+                <TypeListContainer key={type} title={type} />
+              ))}
+            </div>
+          ) : (
+            <SpinnerCircular className="text-center mx-auto mt-5" />
+          )}
+        </div>
       </div>
     </>
   );

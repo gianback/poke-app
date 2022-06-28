@@ -27,7 +27,7 @@ export const setStyleType = (type) => {
       return "bg-white text-black";
 
     case types.steel:
-      return "bg-gray-800 tex-white";
+      return "bg-gray-800 text-white";
 
     case types.fire:
       return "bg-red-600 text-white";

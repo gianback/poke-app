@@ -8,7 +8,7 @@
   }
   .app__container {
     display: grid;
-    grid-template-rows: 80px;
+    grid-template-rows: 87.25px;
   }
   .pokemon__container {
     /*  width: auto;
@@ -18,6 +18,14 @@
     height: 300px;
     margin: 0 auto;
   }
+  .app-bg {
+    background: rgb(232, 240, 231);
+    background: linear-gradient(
+      90deg,
+      rgba(232, 240, 231, 1) 0%,
+      rgba(151, 234, 244, 1) 74%
+    );
+  }
 }
 
 @layer utilities {
@@ -26,5 +34,8 @@
   }
   .text-3xl.active {
     color: rgb(253 224 71);
+  }
+  html {
+    scroll-behavior: smooth;
   }
 }

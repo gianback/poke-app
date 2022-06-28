@@ -5,6 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { getPokemonData, getPokemons, searchPokemon } from "../api/callApi";
 import { SpinnerCircular } from "spinners-react";
 import Navbar from "../components/Navbar";
+import { NavLink } from "react-router-dom";
 const AllPokemonsScreen = () => {
   //pokemons
   const [pokemons, setPokemons] = useState([]);
@@ -13,7 +14,8 @@ const AllPokemonsScreen = () => {
   //booleans
   const [hasMore, setHasMore] = useState(true);
   const [found, setfound] = useState(true);
-
+  //mostrar btn subir
+  const [btnScroll, setBtnScroll] = useState(false);
   const fetchPokemons = async () => {
     try {
       const data = await getPokemons(nextData);
@@ -30,8 +32,18 @@ const AllPokemonsScreen = () => {
     }
   };
 
+  document.addEventListener("scroll", (e) => {
+    const scroll = document.documentElement.scrollTop;
+    if (scroll > 250) {
+      setBtnScroll(true);
+    } else {
+      setBtnScroll(false);
+    }
+  });
+
   useEffect(() => {
     fetchPokemons();
+    /* console.log(window.pageYOffset); */
   }, [nextData]);
 
   const handleInputChange = (e) => {
@@ -64,18 +76,19 @@ const AllPokemonsScreen = () => {
     setFindPok("");
   };
 
+  const prueba2 = () => {
+    document.documentElement.scrollTop = 0;
+  };
   return (
     <>
       <Navbar />
-      <div className="bg-slate-500 h-full ">
-        <div className="container mx-auto h-full bg-red-300 p-2 lg:p-10 relative">
+      <div className="app-bg h-full ">
+        <div className="container mx-auto h-full  p-2 lg:p-9 relative">
           <form
             onSubmit={findPokemon}
             className="flex flex-col lg:flex-row justify-center items-center gap-10 my-3 mx-0 sm:mx-4"
           >
-            <label className="font-bold text-lg">
-              Busca un pokemon por su nombre
-            </label>
+            <label className="font-bold text-lg">Find your pokemon</label>
             <input
               type="text"
               name="name"
@@ -83,13 +96,14 @@ const AllPokemonsScreen = () => {
               autoComplete="off"
               onChange={handleInputChange}
               value={findPok}
+              placeholder="name"
             />
             <div className="flex justify-between items-center gap-5">
               <button
                 className="p-2 bg-yellow-400 rounded-md font-bold inline-block hover:bg-red-500 hover:text-yellow-300 transition-all ease-in duration-200"
                 type="submit"
               >
-                Buscar
+                Search
               </button>
               <button
                 disabled={
@@ -102,7 +116,7 @@ const AllPokemonsScreen = () => {
                 }
                 onClick={handleReset}
               >
-                Reestablecer
+                Reset
               </button>
             </div>
           </form>
@@ -126,6 +140,18 @@ const AllPokemonsScreen = () => {
               </div>
             )}
           </InfiniteScroll>
+          {btnScroll && (
+            <div>
+              <a href="#navbar">
+                <button
+                  onClick={prueba2}
+                  className="fixed bottom-10 right-10 text-7xl"
+                >
+                  👆
+                </button>
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </>
