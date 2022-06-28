@@ -139,14 +139,12 @@ const AllPokemonsScreen = () => {
             )}
           </InfiniteScroll>
           {btnScroll && (
-            <div>
-              <button
-                onClick={prueba2}
-                className="fixed bottom-10 right-10 text-7xl"
-              >
-                👆
-              </button>
-            </div>
+            <button
+              onClick={prueba2}
+              className="fixed bottom-10 right-10 text-7xl"
+            >
+              👆
+            </button>
           )}
         </div>
       </div>
