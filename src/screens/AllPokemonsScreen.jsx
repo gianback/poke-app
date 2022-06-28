@@ -141,14 +141,12 @@ const AllPokemonsScreen = () => {
           </InfiniteScroll>
           {btnScroll && (
             <div>
-              <a href="#navbar">
-                <button
-                  onClick={prueba2}
-                  className="fixed bottom-10 right-10 text-7xl"
-                >
-                  👆
-                </button>
-              </a>
+              <button
+                onClick={prueba2}
+                className="fixed bottom-10 right-10 text-7xl"
+              >
+                👆
+              </button>
             </div>
           )}
         </div>
