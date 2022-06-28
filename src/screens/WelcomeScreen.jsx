@@ -18,7 +18,7 @@ const HomeScreen = () => {
               </h1>
             </div>
             <div className="flex justify-center items-start md:items-center">
-              <Link to="/all">
+              <Link to="/home">
                 <button className="uppercase flex items-center gap-5 rounded-lg p-8 bg-yellow-300 text-red-500 font-bold  text-2xl lg:text-4xl">
                   Start
                   <img

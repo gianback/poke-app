@@ -47,7 +47,7 @@ const Navbar = () => {
           >
             <ul className="flex flex-col justify-evenly items-stretch h-full text-center">
               <NavLink
-                to="/all"
+                to="/home"
                 className="h-full flex items-center justify-center text-3xl hover:text-yellow-300 transition ease-in delay-50"
                 onClick={() => sethamburguer(!hamburguer)}
               >
@@ -73,7 +73,7 @@ const Navbar = () => {
           <ul className="justify-end items-center gap-10 hidden md:flex">
             <NavLink
               className="text-3xl hover:text-yellow-300 transition ease-in delay-50"
-              to="/all"
+              to="/home"
             >
               Home
             </NavLink>
